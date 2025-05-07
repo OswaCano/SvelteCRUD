@@ -1,5 +1,8 @@
 <script>
 	import {v4} from 'uuid';
+	import Noty from 'noty';
+
+	import 'noty/lib/noty.css';
 
 	let product = {
 		id: "",
@@ -73,6 +76,14 @@
 			products = products.concat(newProduct);
 		}
 
+		new Noty({
+			theme: 'sunset',
+			text: editMode ? 'Product updated successfully' : 'Product added successfully',
+			type: 'success',
+			timeout: 3000,
+			progressBar: true,
+			killer: true
+		}).show();
 		clearForm();
 	};
 	
@@ -83,20 +94,6 @@
 	const updateProduct = (productEdited) => {
 		product = productEdited;
 		editMode = true;
-		/*products = products.map((p) => {
-			if (p.id === id) {
-				return {
-					...p,
-					name: product.name,
-					description: product.description,
-					imageUrl: product.imageUrl,
-					category: product.category
-				};
-			}
-			return p;
-		});
-		clearForm();
-		*/
 	}
 </script>
 
